@@ -214,24 +214,6 @@ ng build --configuration production
 
 ---
 
-## Contributing
-
-PRs and issues are welcome! Please open an issue to discuss substantial changes first.
-
----
-
-## License
-
-Add a license of your choice (e.g., MIT) to clarify usage. Create a `LICENSE` file at the repo root.
-
----
-
-## Screenshots
-
-If you have UI screens, add them here (drag images into the README or host in `/docs`).
-
----
-
 ## Acknowledgements
 
 - Angular, ASP.NET Core, EF Core, MySQL, RxJS
