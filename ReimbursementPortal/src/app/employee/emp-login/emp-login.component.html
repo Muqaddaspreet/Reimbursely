@@ -1,0 +1,125 @@
+<body>
+  <!-- Backend Status Indicator -->
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container-fluid">
+      <div class="navbar-brand">
+        <i class="fas fa-receipt me-2"></i>
+        Reimbursement Portal
+      </div>
+      <div class="navbar-nav">
+        <a class="nav-link" [routerLink]="['/']">
+          <i class="fas fa-user-plus me-1"></i>
+          Registration Page
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div
+    class="container d-flex align-items-center justify-content-center min-vh-100"
+  >
+    <div class="row w-100 justify-content-center">
+      <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5">
+        <div class="card">
+          <div class="card-body p-5">
+            <!-- Logo/Header -->
+            <div class="text-center mb-4">
+              <div class="mb-3">
+                <i
+                  class="fas fa-receipt text-primary"
+                  style="font-size: 3rem"
+                ></i>
+              </div>
+              <h2 class="fw-bold text-primary">Welcome Back</h2>
+              <p class="text-muted">
+                Sign in to your Reimbursement Portal account
+              </p>
+            </div>
+
+            <!-- Login Form -->
+            <form
+              class="form-horizontal"
+              novalidate
+              [formGroup]="loginData"
+              (ngSubmit)="Login()"
+            >
+              <div class="form-group mb-4">
+                <label class="form-label" for="email">
+                  <i class="fas fa-envelope me-2"></i>Email Address
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  class="form-control"
+                  formControlName="email"
+                  placeholder="Enter your email address"
+                  required
+                />
+                <div
+                  class="alert alert-danger mt-2"
+                  *ngIf="
+                    email && email.invalid && (email.dirty || email.touched)
+                  "
+                >
+                  <i class="fas fa-exclamation-circle me-2"></i>
+                  Please enter a valid email address
+                </div>
+              </div>
+
+              <div class="form-group mb-4">
+                <label class="form-label" for="password">
+                  <i class="fas fa-lock me-2"></i>Password
+                </label>
+                <input
+                  type="password"
+                  id="password"
+                  class="form-control"
+                  formControlName="password"
+                  placeholder="Enter your password"
+                  required
+                />
+                <div
+                  class="alert alert-danger mt-2"
+                  *ngIf="
+                    password &&
+                    password.invalid &&
+                    (password.dirty || password.touched)
+                  "
+                >
+                  <i class="fas fa-exclamation-circle me-2"></i>
+                  Password is required
+                </div>
+              </div>
+
+              <button
+                class="btn btn-primary btn-lg w-100 mb-3"
+                type="submit"
+                [disabled]="loginData.invalid"
+                id="registerBtn"
+              >
+                <i class="fas fa-sign-in-alt me-2"></i>
+                Sign In
+              </button>
+            </form>
+
+            <!-- Signup Link -->
+            <div class="text-center">
+              <p class="text-muted mb-0">
+                Don't have an account?
+                <a
+                  [routerLink]="['/']"
+                  class="text-primary fw-semibold text-decoration-none"
+                >
+                  Create one here
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

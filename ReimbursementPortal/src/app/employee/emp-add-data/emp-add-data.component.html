@@ -1,0 +1,260 @@
+<body>
+  <!-- Backend Status Indicator -->
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container-fluid">
+      <div class="navbar-brand">
+        <i class="fas fa-receipt me-2"></i>
+        Reimbursement Portal
+      </div>
+      <div class="navbar-nav d-flex align-items-center">
+        <a class="nav-link" [routerLink]="['/empdash', emailParams]">
+          <i class="fas fa-arrow-left me-1"></i>
+          Back to Dashboard
+        </a>
+        <a class="btn btn-outline-danger btn-sm" href="/login">
+          <i class="fas fa-sign-out-alt me-1"></i>
+          Logout
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container mt-4">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-8">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="mb-0">
+              <i class="fas fa-plus-circle text-primary me-2"></i>
+              Add New Reimbursement Request
+            </h3>
+            <p class="text-muted mb-0 mt-2">
+              Submit a new expense reimbursement request
+            </p>
+          </div>
+          <div class="card-body">
+            <form #myform="ngForm" (ngSubmit)="onSubmit(myform)">
+              <!-- Hidden fields -->
+              <input
+                type="hidden"
+                id="employeeEmail"
+                name="employeeEmail"
+                #employeeEmail="ngModel"
+                [(ngModel)]="service.reimbursementData.employeeEmail"
+                class="form-control"
+              />
+              <input
+                type="hidden"
+                id="employeeName"
+                name="employeeName"
+                #employeeName="ngModel"
+                [(ngModel)]="service.reimbursementData.employeeName"
+                class="form-control"
+              />
+              <input
+                type="hidden"
+                id="receiptAttached"
+                name="receiptAttached"
+                #receiptAttached="ngModel"
+                [(ngModel)]="service.reimbursementData.receiptAttached"
+                class="form-control"
+              />
+
+              <div class="row">
+                <!-- Expense Date -->
+                <div class="col-md-6 mb-3">
+                  <label class="form-label" for="expenseDate">
+                    <i class="fas fa-calendar me-2"></i>Expense Date
+                  </label>
+                  <input
+                    type="date"
+                    id="expenseDate"
+                    name="expenseDate"
+                    #expenseDate="ngModel"
+                    [(ngModel)]="service.reimbursementData.expenseDate"
+                    required
+                    class="form-control"
+                  />
+                  <div
+                    class="alert alert-danger mt-2"
+                    *ngIf="
+                      expenseDate.invalid &&
+                      (expenseDate.dirty || expenseDate.touched)
+                    "
+                  >
+                    <i class="fas fa-exclamation-circle me-2"></i>
+                    Expense date is required
+                  </div>
+                </div>
+
+                <!-- Expense Type -->
+                <div class="col-md-6 mb-3">
+                  <label class="form-label" for="expenseType">
+                    <i class="fas fa-tag me-2"></i>Expense Type
+                  </label>
+                  <select
+                    id="expenseType"
+                    name="expenseType"
+                    #expenseType="ngModel"
+                    [(ngModel)]="service.reimbursementData.expenseType"
+                    required
+                    class="form-control"
+                  >
+                    <option value="">Select expense type</option>
+                    <option value="Medical">Medical</option>
+                    <option value="Travel">Travel</option>
+                    <option value="Food">Food</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Misc.">Misc.</option>
+                  </select>
+                  <div
+                    class="alert alert-danger mt-2"
+                    *ngIf="
+                      expenseType.invalid &&
+                      (expenseType.dirty || expenseType.touched)
+                    "
+                  >
+                    <i class="fas fa-exclamation-circle me-2"></i>
+                    Please select an expense type
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <!-- Amount -->
+                <div class="col-md-6 mb-3">
+                  <label class="form-label" for="amount">
+                    <i class="fas fa-dollar-sign me-2"></i>Amount
+                  </label>
+                  <input
+                    type="number"
+                    id="amount"
+                    name="amount"
+                    #amount="ngModel"
+                    [(ngModel)]="service.reimbursementData.amount"
+                    placeholder="Enter amount"
+                    required
+                    min="0.01"
+                    step="0.01"
+                    class="form-control"
+                  />
+                  <div
+                    class="alert alert-danger mt-2"
+                    *ngIf="amount.invalid && (amount.dirty || amount.touched)"
+                  >
+                    <i class="fas fa-exclamation-circle me-2"></i>
+                    Please enter a valid amount
+                  </div>
+                </div>
+
+                <!-- Currency -->
+                <div class="col-md-6 mb-3">
+                  <label class="form-label" for="currency">
+                    <i class="fas fa-coins me-2"></i>Currency
+                  </label>
+                  <select
+                    id="currency"
+                    name="currency"
+                    #currency="ngModel"
+                    [(ngModel)]="service.reimbursementData.currency"
+                    required
+                    class="form-control"
+                  >
+                    <option value="">Select currency</option>
+                    <option value="INR">INR</option>
+                    <option value="USD">USD</option>
+                    <option value="EURO">EURO</option>
+                  </select>
+                  <div
+                    class="alert alert-danger mt-2"
+                    *ngIf="
+                      currency.invalid && (currency.dirty || currency.touched)
+                    "
+                  >
+                    <i class="fas fa-exclamation-circle me-2"></i>
+                    Please select a currency
+                  </div>
+                </div>
+              </div>
+
+              <!-- Description -->
+              <div class="mb-3">
+                <label class="form-label" for="description">
+                  <i class="fas fa-align-left me-2"></i>Description
+                </label>
+                <textarea
+                  id="description"
+                  name="description"
+                  #description="ngModel"
+                  [(ngModel)]="service.reimbursementData.description"
+                  placeholder="Describe the expense in detail"
+                  required
+                  class="form-control"
+                  rows="3"
+                ></textarea>
+                <div
+                  class="alert alert-danger mt-2"
+                  *ngIf="
+                    description.invalid &&
+                    (description.dirty || description.touched)
+                  "
+                >
+                  <i class="fas fa-exclamation-circle me-2"></i>
+                  Please provide a description
+                </div>
+              </div>
+
+              <!-- Receipt Upload -->
+              <div class="mb-4">
+                <label class="form-label" for="receiptImageLink">
+                  <i class="fas fa-upload me-2"></i>Upload Receipt
+                </label>
+                <input
+                  type="file"
+                  accept=".png,.jpeg,.pdf,.jpg"
+                  class="form-control"
+                  id="receiptImageLink"
+                  name="receiptImageLink"
+                  (change)="fileSelected($event)"
+                />
+                <div class="form-text">
+                  <i class="fas fa-info-circle me-1"></i>
+                  Supported formats: PNG, JPEG, JPG, PDF (Max size: 10MB)
+                </div>
+                <div
+                  class="alert alert-danger mt-2"
+                  *ngIf="fileUploaded && !fileType"
+                >
+                  <i class="fas fa-exclamation-circle me-2"></i>
+                  File should be an image or PDF
+                </div>
+              </div>
+
+              <!-- Submit Button -->
+              <div class="d-flex justify-content-end gap-3">
+                <a
+                  [routerLink]="['/empdash', emailParams]"
+                  class="btn btn-secondary btn-lg add-form-btn cancel-btn"
+                >
+                  <i class="fas fa-arrow-left me-2"></i>
+                  Cancel
+                </a>
+                <button
+                  class="btn btn-primary btn-lg add-form-btn submit-btn"
+                  type="submit"
+                  [disabled]="myform.invalid"
+                >
+                  <i class="fas fa-paper-plane me-2"></i>
+                  Submit Request
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

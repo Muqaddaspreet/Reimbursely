@@ -1,0 +1,247 @@
+<body>
+  <!-- Backend Status Indicator -->
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container-fluid">
+      <div class="navbar-brand">
+        <i class="fas fa-receipt me-2"></i>
+        Reimbursement Portal
+      </div>
+      <div class="navbar-nav">
+        <a class="nav-link" href="/login">
+          <i class="fas fa-sign-in-alt me-1"></i>
+          Login Page
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div
+    class="container d-flex align-items-center justify-content-center min-vh-100"
+  >
+    <div class="row w-100 justify-content-center">
+      <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5">
+        <div class="card">
+          <div class="card-body p-5">
+            <!-- Logo/Header -->
+            <div class="text-center mb-4">
+              <div class="mb-3">
+                <i
+                  class="fas fa-user-plus text-primary"
+                  style="font-size: 3rem"
+                ></i>
+              </div>
+              <h2 class="fw-bold text-primary">Create Account</h2>
+              <p class="text-muted">Join the Reimbursement Portal today</p>
+            </div>
+
+            <!-- Signup Form -->
+            <form #dataForm="ngForm" (ngSubmit)="onSubmit(dataForm)">
+              <div class="form-group mb-3">
+                <label class="form-label" for="email">
+                  <i class="fas fa-envelope me-2"></i>Email Address
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  #email="ngModel"
+                  [(ngModel)]="service.signupData.email"
+                  placeholder="Enter your email address"
+                  required
+                  email
+                  class="form-control"
+                />
+                <div
+                  class="alert alert-danger mt-2"
+                  *ngIf="email.invalid && (email.dirty || email.touched)"
+                >
+                  <i class="fas fa-exclamation-circle me-2"></i>
+                  Please enter a valid email address
+                </div>
+              </div>
+
+              <div class="form-group mb-3">
+                <label class="form-label" for="password">
+                  <i class="fas fa-lock me-2"></i>Password
+                </label>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  #password="ngModel"
+                  [(ngModel)]="service.signupData.password"
+                  placeholder="Enter your password"
+                  required
+                  minlength="8"
+                  pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
+                  class="form-control"
+                />
+                <div
+                  class="alert alert-danger mt-2"
+                  *ngIf="
+                    password.invalid && (password.dirty || password.touched)
+                  "
+                >
+                  <i class="fas fa-exclamation-circle me-2"></i>
+                  Password must be at least 8 characters with letters, numbers,
+                  and special characters
+                </div>
+              </div>
+
+              <div class="form-group mb-3">
+                <label class="form-label" for="confirmPassword">
+                  <i class="fas fa-lock me-2"></i>Confirm Password
+                </label>
+                <input
+                  type="password"
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  #confirmPasswordRef="ngModel"
+                  [(ngModel)]="confirmPassword"
+                  (ngModelChange)="checkPasswordMatch()"
+                  placeholder="Confirm your password"
+                  required
+                  minlength="8"
+                  pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
+                  class="form-control"
+                />
+                <div
+                  class="alert alert-danger mt-2"
+                  *ngIf="passwordMismatch && confirmPasswordRef.touched"
+                >
+                  <i class="fas fa-exclamation-circle me-2"></i>
+                  Password Mismatch
+                </div>
+              </div>
+
+              <div class="form-group mb-3">
+                <label class="form-label" for="fullName">
+                  <i class="fas fa-user me-2"></i>Full Name
+                </label>
+                <input
+                  type="text"
+                  id="fullName"
+                  name="fullName"
+                  #fullName="ngModel"
+                  [(ngModel)]="service.signupData.fullName"
+                  placeholder="Enter your full name"
+                  required
+                  class="form-control"
+                />
+                <div
+                  class="alert alert-danger mt-2"
+                  *ngIf="
+                    fullName.invalid && (fullName.dirty || fullName.touched)
+                  "
+                >
+                  <i class="fas fa-exclamation-circle me-2"></i>
+                  Full name is required
+                </div>
+              </div>
+
+              <div class="form-group mb-3">
+                <label class="form-label" for="panNumber">
+                  <i class="fas fa-id-card me-2"></i>PAN Number
+                </label>
+                <input
+                  type="text"
+                  id="panNumber"
+                  name="panNumber"
+                  #panNumber="ngModel"
+                  [(ngModel)]="service.signupData.panNumber"
+                  placeholder="Enter your PAN number"
+                  required
+                  class="form-control"
+                />
+                <div
+                  class="alert alert-danger mt-2"
+                  *ngIf="
+                    panNumber.invalid && (panNumber.dirty || panNumber.touched)
+                  "
+                >
+                  <i class="fas fa-exclamation-circle me-2"></i>
+                  PAN number is required
+                </div>
+              </div>
+
+              <div class="form-group mb-3">
+                <label class="form-label" for="bank">
+                  <i class="fas fa-university me-2"></i>Bank Name
+                </label>
+                <input
+                  type="text"
+                  id="bank"
+                  name="bank"
+                  #bank="ngModel"
+                  [(ngModel)]="service.signupData.bank"
+                  placeholder="Enter your bank name"
+                  required
+                  class="form-control"
+                />
+                <div
+                  class="alert alert-danger mt-2"
+                  *ngIf="bank.invalid && (bank.dirty || bank.touched)"
+                >
+                  <i class="fas fa-exclamation-circle me-2"></i>
+                  Bank name is required
+                </div>
+              </div>
+
+              <div class="form-group mb-4">
+                <label class="form-label" for="bankAccountNumber">
+                  <i class="fas fa-credit-card me-2"></i>Bank Account Number
+                </label>
+                <input
+                  type="text"
+                  id="bankAccountNumber"
+                  name="bankAccountNumber"
+                  #bankAccountNumber="ngModel"
+                  [(ngModel)]="service.signupData.bankAccountNumber"
+                  placeholder="Enter your account number"
+                  required
+                  class="form-control"
+                />
+                <div
+                  class="alert alert-danger mt-2"
+                  *ngIf="
+                    bankAccountNumber.invalid &&
+                    (bankAccountNumber.dirty || bankAccountNumber.touched)
+                  "
+                >
+                  <i class="fas fa-exclamation-circle me-2"></i>
+                  Bank account number is required
+                </div>
+              </div>
+
+              <button
+                class="btn btn-primary btn-lg w-100 mb-3"
+                type="submit"
+                [disabled]="dataForm.invalid || passwordMismatch"
+                id="registerBtn"
+              >
+                <i class="fas fa-user-plus me-2"></i>
+                Create Account
+              </button>
+            </form>
+
+            <!-- Login Link -->
+            <div class="text-center">
+              <p class="text-muted mb-0">
+                Already have an account?
+                <a
+                  href="/login"
+                  class="text-primary fw-semibold text-decoration-none"
+                >
+                  Sign in here
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

@@ -1,0 +1,127 @@
+<!-- Navigation -->
+<nav class="navbar">
+  <div class="container-fluid">
+    <div class="navbar-brand">
+      <i class="fas fa-receipt me-2"></i>
+      Reimbursement Portal
+    </div>
+    <div class="navbar-nav d-flex align-items-center">
+      <a class="nav-link" href="/admindash">
+        <i class="fas fa-arrow-left me-1"></i>
+        Back to Dashboard
+      </a>
+      <a class="btn btn-outline-danger btn-sm" href="/login">
+        <i class="fas fa-sign-out-alt me-1"></i>
+        Logout
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Main Content -->
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-8">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="mb-0">
+            <i class="fas fa-check-circle text-success me-2"></i>
+            Approve Reimbursement Request
+          </h3>
+          <p class="text-muted mb-0 mt-2">
+            Review and approve employee reimbursement request
+          </p>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="approveData" (ngSubmit)="approveCollection()">
+            <div class="row">
+              <!-- Approved By -->
+              <div class="col-md-6 mb-3">
+                <label class="form-label" for="approvedBy">
+                  <i class="fas fa-user-check me-2"></i>Approved By
+                </label>
+                <input
+                  type="text"
+                  id="approvedBy"
+                  formControlName="approvedBy"
+                  placeholder="Enter your name"
+                  required
+                  class="form-control"
+                />
+                <div
+                  class="alert alert-danger mt-2"
+                  *ngIf="
+                    approvedBy &&
+                    approvedBy.invalid &&
+                    (approvedBy.dirty || approvedBy.touched)
+                  "
+                >
+                  <i class="fas fa-exclamation-circle me-2"></i>
+                  Please enter your name
+                </div>
+              </div>
+
+              <!-- Approved Value -->
+              <div class="col-md-6 mb-3">
+                <label class="form-label" for="approvedValue">
+                  <i class="fas fa-dollar-sign me-2"></i>Approved Amount
+                </label>
+                <input
+                  type="number"
+                  id="approvedValue"
+                  formControlName="approvedValue"
+                  placeholder="Enter approved amount"
+                  required
+                  min="0"
+                  step="0.01"
+                  class="form-control"
+                />
+                <div
+                  class="alert alert-danger mt-2"
+                  *ngIf="
+                    approvedValue &&
+                    approvedValue.invalid &&
+                    (approvedValue.dirty || approvedValue.touched)
+                  "
+                >
+                  <i class="fas fa-exclamation-circle me-2"></i>
+                  Please enter a valid approved amount
+                </div>
+              </div>
+            </div>
+
+            <!-- Approval Notes -->
+            <div class="mb-4">
+              <label class="form-label" for="approvalNotes">
+                <i class="fas fa-sticky-note me-2"></i>Approval Notes (Optional)
+              </label>
+              <textarea
+                id="approvalNotes"
+                formControlName="approvalNotes"
+                placeholder="Add any notes about this approval"
+                class="form-control"
+                rows="3"
+              ></textarea>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="d-flex justify-content-between">
+              <a href="/admindash" class="btn btn-secondary">
+                <i class="fas fa-arrow-left me-2"></i>
+                Cancel
+              </a>
+              <button
+                class="btn btn-success btn-lg"
+                type="submit"
+                [disabled]="approveData.invalid"
+              >
+                <i class="fas fa-check me-2"></i>
+                Approve Request
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

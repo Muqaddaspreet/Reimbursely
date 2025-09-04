@@ -1,0 +1,32 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+/* .navbar{
+    margin-top:2px;
+    height:60px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightblue;
+    color: black;
+    border-style: solid;
+    border-color: lightblue;
+    font-size: 28px;
+    position:relative;
+} */
+
+/* .card-registration .select-input.form-control[readonly]:not([disabled]) {
+    font-size: 1rem;
+    line-height: 2.15;
+    padding-left: .75em;
+    padding-right: .75em;
+    }
+    .card-registration .select-arrow {
+    top: 13px;
+    } */
+
+/* body{
+    min-height:100px;
+} */
+
