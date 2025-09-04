@@ -114,6 +114,7 @@ The frontend will start on **http://localhost:4200**
 - **Password:** `John@123`
 - **Email:** `jane.smith@reimbursely.com`
 - **Password:** `Jane@123`
+- One can signUp to create more employees.
 
 ## 📊 Database Access
 
@@ -252,21 +253,4 @@ The frontend configuration is in `ReimbursementPortal/src/environments/`:
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 👥 Authors
-
-- **Your Name** - _Initial work_ - [YourGitHub](https://github.com/yourusername)
-
-## 🙏 Acknowledgments
-
-- Spring Boot team for the excellent framework
-- Angular team for the robust frontend framework
-- Bootstrap for the UI components
-- H2 Database for the lightweight database solution
-
----
-
-**Note:** This application is configured with persistent data storage. Your data will be preserved between application restarts. The database files are stored in the `ReimburselyBackend/data/` directory.
+**Note:** This application is configured with persistent data storage. The data will be preserved between application restarts. The database files are stored in the `ReimburselyBackend/data/` directory.
