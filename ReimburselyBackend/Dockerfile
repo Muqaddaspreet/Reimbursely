@@ -8,10 +8,10 @@ RUN apt-get update && apt-get install -y maven && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 
 # Copy pom.xml first for better caching
-COPY pom.xml .
+COPY ReimburselyBackend/pom.xml .
 
 # Copy source code
-COPY src ./src
+COPY ReimburselyBackend/src ./src
 
 # Build the application
 RUN mvn clean package -DskipTests
