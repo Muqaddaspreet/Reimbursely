@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: reimbursely-backend
+    env: java
+    plan: free
+    buildCommand: cd ReimburselyBackend && ./mvnw clean package -DskipTests
+    startCommand: cd ReimburselyBackend && java -jar target/reimbursely-backend-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: FRONTEND_URL
+        value: https://your-frontend-url.onrender.com
