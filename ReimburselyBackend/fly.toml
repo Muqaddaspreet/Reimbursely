@@ -5,6 +5,7 @@ primary_region = "iad"
 
 [env]
   SPRING_PROFILES_ACTIVE = "prod"
+  # DATABASE_URL will be set via flyctl secrets
 
 [http_service]
   internal_port = 8080
