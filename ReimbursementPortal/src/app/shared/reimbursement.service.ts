@@ -4,6 +4,7 @@ import { Signup } from '../models/signup.model';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -13,9 +14,8 @@ export class ReimbursementService {
 
   signupData: Signup = new Signup();
   reimbursementData: ReimbursementData = new ReimbursementData();
-  readonly baseSignupURL = 'http://localhost:10253/api/Signup';
-  readonly baseReimbursementDataURL =
-    'http://localhost:10253/api/ReimbursementData';
+  readonly baseSignupURL = `${environment.apiUrl}/Signup`;
+  readonly baseReimbursementDataURL = `${environment.apiUrl}/ReimbursementData`;
 
   private handleError(error: HttpErrorResponse) {
     let errorMessage = 'An error occurred';
