@@ -17,7 +17,6 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/ReimbursementData")
-@CrossOrigin(origins = "http://localhost:4200")
 public class ReimbursementDataController {
     
     @Autowired
