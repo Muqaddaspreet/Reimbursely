@@ -81,7 +81,13 @@ mvn spring-boot:run
   - Linux/Mac: `./run.sh`
 - Or run the JAR file directly
 
-The backend will start on **http://localhost:10253**
+The backend will start on **[https://reimbursely-backend.onrender.com](https://reimbursely-backend.onrender.com)**
+
+The APIs to test the backend are:
+
+- /api/Signup/
+
+- api//ReimbursementData/
 
 ### 3. Frontend Setup
 
@@ -99,7 +105,7 @@ npm start
 ng serve
 ```
 
-The frontend will start on **http://localhost:4200**
+The frontend will start on **[https://reimbursely-frontend.vercel.app/](https://reimbursely-frontend.vercel.app/)**
 
 ## 🔐 Default Login Credentials
 
@@ -119,7 +125,7 @@ The frontend will start on **http://localhost:4200**
 ## 📊 Database Access
 
 You can access the H2 database console at:
-**http://localhost:10253/api/h2-console**
+**[[https://console.neon.tech/app/projects/silent-sky-02917110?database=neondb](https://console.neon.tech/app/projects/silent-sky-02917110?database=neondb)**
 
 - **JDBC URL:** `jdbc:h2:file:./data/reimburselydb`
 - **Username:** `sa`
