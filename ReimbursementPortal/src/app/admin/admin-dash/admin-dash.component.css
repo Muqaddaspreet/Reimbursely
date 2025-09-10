@@ -1,4 +1,61 @@
-*{
-    padding: 0;
-    margin: 0;
+* {
+  padding: 0;
+  margin: 0;
+}
+
+/* Search input group improvements */
+.search-container {
+  width: 100%;
+  max-width: 380px;
+}
+
+.search-input-group {
+  display: flex;
+  align-items: stretch;
+  height: 42px;
+  border: 1px solid #ced4da;
+  border-radius: 10px; /* Subtle rounding, not overly pill-shaped */
+  overflow: hidden; /* Ensures input and button share the same rounding */
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+}
+
+.search-input {
+  flex: 1 1 auto;
+  border: none !important;
+  outline: none !important;
+  padding: 0 12px;
+  box-shadow: none !important;
+  font-size: 14px;
+}
+
+.search-input::placeholder {
+  color: #94a3b8;
+}
+
+.search-btn {
+  border: none !important;
+  outline: none !important;
+  width: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #8b5cf6, #6366f1);
+  color: #ffffff;
+  box-shadow: none !important;
+}
+
+/* Unified focus ring for the whole group */
+.search-input-group:focus-within {
+  border-color: #6f42c1;
+  box-shadow: 0 0 0 3px rgba(111, 66, 193, 0.15);
+}
+
+/* Remove default bootstrap input-group rounding conflicts if any */
+.search-input.form-control {
+  border-radius: 0;
+}
+
+.search-btn.btn {
+  border-radius: 0;
 }

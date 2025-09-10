@@ -1,4 +1,34 @@
-*{
-    padding: 0;
-    margin: 0;
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.form-control {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* Action buttons layout */
+.action-buttons {
+  gap: 16px;
+  margin-top: 8px;
+  width: 100%;
+}
+
+/* Button sizing and alignment */
+.action-buttons .btn {
+  min-width: 160px;
+  padding: 10px 16px;
+  text-align: center;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+/* Hover polish */
+.action-buttons .btn-success:hover {
+  filter: brightness(0.95);
+}
+
+.action-buttons .btn-secondary:hover {
+  filter: brightness(0.97);
 }

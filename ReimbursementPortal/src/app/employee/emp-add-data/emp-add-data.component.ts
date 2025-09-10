@@ -82,10 +82,7 @@ export class EmpAddDataComponent implements OnInit {
     );
     this.service.postReimbursementData().subscribe((res) => {
       console.warn(res);
-      alert('Added successfully!!');
-      setTimeout(() => {
-        this.route.navigate(['empdash', this.emailParams]);
-      }, 2000);
+      this.route.navigate(['empdash', this.emailParams]);
     });
   }
   fileSelected(event: any) {

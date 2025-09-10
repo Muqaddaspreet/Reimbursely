@@ -30,6 +30,9 @@ export class EmpLoginComponent implements OnInit {
       return;
     }
 
+    const emailLower = (this.loginData.value.email as string)?.toLowerCase();
+    const passwordValue = this.loginData.value.password;
+
     this.service.getSignup().subscribe({
       next: (record: any) => {
         var user = false;
@@ -38,8 +41,8 @@ export class EmpLoginComponent implements OnInit {
 
         const objID = record.find((a: any) => {
           if (
-            a.email === this.loginData.value.email &&
-            a.password === this.loginData.value.password
+            (a.email as string)?.toLowerCase() === emailLower &&
+            a.password === passwordValue
           ) {
             user = true;
             adminFlag = a.isApprover;
@@ -53,20 +56,14 @@ export class EmpLoginComponent implements OnInit {
           console.warn('ID is: ', userID);
           console.warn('IsApprover: ', adminFlag);
 
-          // Store email before resetting the form
-          const userEmail = this.loginData.value.email;
+          // Use normalized email for navigation, without changing control value
+          const userEmail = emailLower;
           this.loginData.reset();
 
           if (adminFlag == 1) {
-            alert('Login successful! Redirecting to Admin Dashboard...');
-            setTimeout(() => {
-              this.route.navigate(['admindash']);
-            }, 2000);
+            this.route.navigate(['admindash']);
           } else {
-            alert('Login successful! Redirecting to Employee Dashboard...');
-            setTimeout(() => {
-              this.route.navigate(['empdash', userEmail]);
-            }, 2000);
+            this.route.navigate(['empdash', userEmail]);
           }
         } else {
           alert('Invalid email or password!');

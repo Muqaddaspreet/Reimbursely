@@ -56,10 +56,7 @@ export class AdminApproveRequestComponent implements OnInit {
         .updateReimbursement(this.ID, obj)
         .subscribe((record: any) => {
           console.warn('record is here', record);
-          alert('Request Approved');
-          setTimeout(() => {
-            this.route.navigate(['admindash']);
-          }, 2000);
+          this.route.navigate(['admindash']);
         });
     });
   }

@@ -94,12 +94,10 @@ export class EmpUpdateDataComponent implements OnInit {
       .updateReimbursement(this.idParams, this.edit.value)
       .subscribe((record: any) => {
         console.warn('record is here', record);
-        alert('Update successful!!');
-        //this.editstudent.reset({})
+        // Navigate immediately without alert
+        this.route.navigate(['empdash', this.emailParams]);
       });
-    setTimeout(() => {
-      this.route.navigate(['empdash', this.emailParams]);
-    }, 2000);
+    // Removed delayed navigation to make UX snappier
   }
 
   fileSelected(event: any) {
